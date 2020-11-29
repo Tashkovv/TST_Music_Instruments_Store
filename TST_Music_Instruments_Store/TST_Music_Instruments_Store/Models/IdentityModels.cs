@@ -29,5 +29,7 @@ namespace TST_Music_Instruments_Store.Models
         {
             return new ApplicationDbContext();
         }
+        public System.Data.Entity.DbSet<Product> Products { get; set; }
+        public System.Data.Entity.DbSet<CartItem> ShoppingCartItems { get; set; }
     }
 }
