@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -7,7 +8,8 @@ namespace TST_Music_Instruments_Store.Models
 {
     public class CartItem
     {
-        public string ItemId { get; set; }
+        [Key]
+        public int ItemId { get; set; }
         public string CartId { get; set; }
         public int Quantity { get; set; }
         public System.DateTime DateCreated { get; set; }
