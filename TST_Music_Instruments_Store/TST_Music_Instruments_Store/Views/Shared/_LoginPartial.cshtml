@@ -16,8 +16,8 @@
 }
 else
 {
-    <ul class="nav navbar-nav navbar-right">
-        <li class="@Html.IsActive("Account", "Register")">@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "nav-link" })</li>
-        <li class="@Html.IsActive("Account", "Login")">@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "nav-link" })</li>
-    </ul>
+<ul class="nav navbar-nav navbar-right">
+    <li class="@Html.IsActive("Account", "Login")">@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "nav-link" })</li>
+    <li class="@Html.IsActive("ShoppingCart", "Index")">@Html.ActionLink("Cart Items", "Index", "CartItems", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "nav-link" })</li>
+</ul>
 }
