@@ -4,84 +4,115 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
-
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
+
+<div class="container" style="margin-bottom: 86.4px; margin-top: 54.4px">
+    <div class="row">
+        <div class="col-2">
+            
+        </div>
+        @foreach (var item in Model)
+        {
+            <div class="col-3 ml-3 mb-3">
+                <div class="card border-dark position-relative" style="flex-wrap: wrap;">
+                    <div class="card-header text-center bg-dark text-white">
+                        @item.NameOfProduct
+                    </div>
+                    <div class="card-body">
+                        <img src="@item.ImagePath" class="img img-thumbnail border-dark" style="width: 200px; height: 200px;" />
+                        <hr class="bg-dark" />
+                        <p class="text-center mb-0">Price: @item.Price</p>
+                    </div>
+                    <button class="btn-outline-secondary border-right-0 border-bottom-0 border-left-0 btn">
+                        Add to Cart <i class="fas fa-shopping-cart"></i>
+                    </button>
+                </div>
+            </div>
+        } 
+    </div>
+</div>
+
+
+@*<h2>Index</h2>
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Manufacturer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NameOfProduct)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductCategory)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductSubCategory)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StringCount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StringSize)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ImagePath)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Color)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rating)
+            </th>
+            <th></th>
+        </tr>
+
+    @foreach (var item in Model) {
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Manufacturer)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NameOfProduct)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ProductCategory)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ProductSubCategory)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.StringCount)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.StringSize)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Price)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ImagePath)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Color)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Rating)
-        </th>
-        <th></th>
+        <td>
+            @Html.DisplayFor(modelItem => item.Manufacturer)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NameOfProduct)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProductCategory)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProductSubCategory)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StringCount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StringSize)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+            <img style="max-width:200px" src="@item.ImagePath" />
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Color)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Rating)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.ProductId }) |
+            @Html.ActionLink("Details", "Details", new { id = item.ProductId }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.ProductId })
+        </td>
     </tr>
+    }
 
-@foreach (var item in Model) {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.Manufacturer)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.NameOfProduct)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.ProductCategory)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.ProductSubCategory)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.StringCount)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.StringSize)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Price)
-    </td>
-    <td>
-        <img style="max-width:200px" src="@item.ImagePath" />
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Color)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Rating)
-    </td>
-    <td>
-        @Html.ActionLink("Edit", "Edit", new { id = item.ProductId }) |
-        @Html.ActionLink("Details", "Details", new { id = item.ProductId }) |
-        @Html.ActionLink("Delete", "Delete", new { id = item.ProductId })
-    </td>
-</tr>
-}
-
-</table>
+    </table>*@
