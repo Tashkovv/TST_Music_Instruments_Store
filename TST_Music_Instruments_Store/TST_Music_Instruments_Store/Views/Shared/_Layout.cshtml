@@ -8,25 +8,10 @@
     <title>@ViewBag.Title - TST Music Instrument Shop</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
 </head>
 <body>
-    <nav class="navbar navbar-dark bg-dark navbar-expand-lg pb-0">
+    <nav class="navbar navbar-fixed-top navbar-dark bg-dark navbar-expand-lg">
         <div class="container">
-            <p class="text-white mb-0">+389 (0)2 55 14 777</p>
-            <ul class="nav navbar-nav navbar-right">
-                <li class="nav-item @Html.IsActive("Home", "About")">
-                    @Html.ActionLink("About us", "About", "Home", new { area = "" }, new { @class = "nav-link" })
-                </li>
-                <li class="nav-item @Html.IsActive("Home", "Contact")">
-                    @Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })
-                </li>
-            </ul>
-        </div>
-    </nav>
-    <nav class="navbar navbar-fixed-top navbar-dark bg-dark navbar-expand-lg pt-0">
-        <div class="container">
-            @*@Html.ActionLink("TST", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
