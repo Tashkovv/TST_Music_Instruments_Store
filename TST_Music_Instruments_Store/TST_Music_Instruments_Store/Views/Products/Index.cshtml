@@ -4,33 +4,90 @@
     ViewBag.Title = "Index";
 }
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-
 <div class="container" style="margin-bottom: 86.4px; margin-top: 54.4px">
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
     <div class="row">
         <div class="col-2">
-            
-        </div>
-        @foreach (var item in Model)
-        {
-            <div class="col-3 ml-3 mb-3">
-                <div class="card border-dark position-relative" style="flex-wrap: wrap;">
-                    <div class="card-header text-center bg-dark text-white">
-                        @item.NameOfProduct
+            <div class="container pr-0 pl-0">
+                <div class="row text-center">
+                    <h4>Filter</h4>
+                </div>
+                <hr />
+                <div class="row">
+                    <div class="col">
+                        <h4>Company</h4>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="Firma 1" id="companyName1">
+                            <label class="form-check-label" for="companyName1">
+                                companyName1
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="Firma 1" id="companyName2">
+                            <label class="form-check-label" for="companyName2">
+                                companyName2
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="Firma 1" id="companyName3">
+                            <label class="form-check-label" for="companyName3">
+                                companyName3
+                            </label>
+                        </div>
                     </div>
-                    <div class="card-body">
-                        <img src="@item.ImagePath" class="img img-thumbnail border-dark" style="width: 200px; height: 200px;" />
-                        <hr class="bg-dark" />
-                        <p class="text-center mb-0">Price: @item.Price</p>
+                </div>
+                <hr />
+                <div class="row">
+                    <div class="col">
+                        <h5>Instrument Name</h5>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="Firma 1" id="InstrumentName1">
+                            <label class="form-check-label" for="InstrumentName1">
+                                InstrumentName1
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="Firma 1" id="InstrumentName2">
+                            <label class="form-check-label" for="InstrumentName2">
+                                InstrumentName2
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="Firma 1" id="InstrumentName3">
+                            <label class="form-check-label" for="InstrumentName3">
+                                InstrumentName3
+                            </label>
+                        </div>
                     </div>
-                    <button class="btn-outline-secondary border-right-0 border-bottom-0 border-left-0 btn">
-                        Add to Cart <i class="fas fa-shopping-cart"></i>
-                    </button>
                 </div>
             </div>
-        } 
+        </div>
+        <div class="col-10">
+            <div class="container">
+                <div class="row">
+                    @foreach (var item in Model)
+                    {
+                        <div class="col-4 mb-3">
+                            <div class="card border-dark">
+                                <div class="card-header text-center bg-dark text-white">
+                                    @item.NameOfProduct
+                                </div>
+                                <div class="card-body">
+                                    <img src="@item.ImagePath" class="img img-thumbnail border-dark" style="width: 200px; height: 200px;" />
+                                    <hr class="bg-dark" />
+                                    <p class="text-center mb-0">Price: @item.Price</p>
+                                </div>
+                                <button class="btn-outline-secondary border-right-0 border-bottom-0 border-left-0 btn">
+                                    Add to Cart <i class="fas fa-shopping-cart"></i>
+                                </button>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
