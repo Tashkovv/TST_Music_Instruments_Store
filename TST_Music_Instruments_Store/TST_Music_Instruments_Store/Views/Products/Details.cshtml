@@ -4,94 +4,28 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
-
-<div>
-    <h4>Product</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.NameOfProduct)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NameOfProduct)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ProductCategory)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ProductCategory)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ProductSubCategory)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ProductSubCategory)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.StringCount)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.StringCount)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.StringSize)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.StringSize)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Price)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ImagePath)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ImagePath)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Manufacturer)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Manufacturer)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Color)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Color)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Rating)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Rating)
-        </dd>
-
-    </dl>
+<div class="container" style="margin-top: 70px;">
+    <div class="row">
+        <div class="col-6">
+            <img src="@Model.ImagePath" class="img img-fluid" />
+        </div>
+        <div class="col-6">
+            <h1 class="text-center">@Model.NameOfProduct</h1>
+            <hr />
+            <h4><b>price:</b> $@Model.Price</h4>
+            <h4><b>rating:</b> @Model.Rating</h4>
+            <h4><b>category:</b> @Model.ProductCategory</h4>
+            <h4><b>subcategory:</b> @Model.ProductSubCategory</h4>
+            <h4><b>manufacturer:</b> @Model.Manufacturer</h4>
+            <h4><b>color:</b> @Model.Color</h4>
+            <h4><b>string count:</b> @Model.StringCount</h4>
+            <h4><b>string size:</b> @Model.StringSize</h4>
+            <hr />
+            <a href="" class="btn btn-block btn-dark">Add to Cart</a>
+        </div>
+    </div>
 </div>
+
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.ProductId }) |
     @Html.ActionLink("Back to List", "Index")
