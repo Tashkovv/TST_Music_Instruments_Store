@@ -31,7 +31,7 @@ else
         <li class="@Html.IsActive("Account", "Login")">
             @Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "nav-link" })
         </li>
-        <li class="@Html.IsActive("ShoppingCart", "Index")">
+        <li class="@Html.IsActive("CartItems", "Index")">
             @Html.ActionLink(" ", "Index", "CartItems", new { @class = "nav-link fas fa-shopping-cart", style = "padding-top: 13px;" })
         </li>
         <li class="nav-item @Html.IsActive("Home", "About")">

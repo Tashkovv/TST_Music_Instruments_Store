@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using TST_Music_Instruments_Store.Logic;
 using TST_Music_Instruments_Store.Models;
 
 namespace TST_Music_Instruments_Store.Controllers
@@ -17,11 +19,65 @@ namespace TST_Music_Instruments_Store.Controllers
         // GET: CartItems
         public ActionResult Index()
         {
-            var shoppingCartItems = db.ShoppingCartItems.Include(c => c.Product);
-            return View(shoppingCartItems.ToList());
+            ShoppingCartActions actions = new ShoppingCartActions();
+            /*using (ShoppingCartActions usersShoppingCart = new ShoppingCartActions())
+            {
+                decimal cartTotal = 0;
+                cartTotal = usersShoppingCart.GetTotal();
+                if (cartTotal > 0)
+                {
+                    // Display Total.
+                    ViewBag.Total = cartTotal;
+                }
+                else
+                {
+                    ViewBag.Total = "0";
+                }
+            }*/
+            return View(actions.GetCartItems());
         }
 
-
+        //AddToCart
+        [AllowAnonymous]
+        public ActionResult AddToCart()
+        {
+            string rawId = Request.QueryString["ProductId"];
+            int productId;
+            if (!String.IsNullOrEmpty(rawId) && int.TryParse(rawId, out productId))
+            {
+                using (ShoppingCartActions usersShoppingCart = new ShoppingCartActions())
+                {
+                    usersShoppingCart.AddToCart(Convert.ToInt16(rawId));
+                }
+            }
+            else
+            {
+                Debug.Fail("ERROR : We should never get to /ShoppingCart/AddToCart without a ProductId.");
+                throw new Exception("ERROR : It is illegal to load /ShoppingCart/AddToCart without setting a ProductId.");
+            }
+            return RedirectToAction("Index");
+        }
+        //Remove item from cart
+        [AllowAnonymous]
+        public ActionResult RemoveItemFromCart()
+        {
+            string rawId = Request.QueryString["ProductId"];
+            int productsId;
+            if (!String.IsNullOrEmpty(rawId) && int.TryParse(rawId, out productsId))
+            {
+                using (ShoppingCartActions usersShoppingCart = new ShoppingCartActions())
+                {
+                    String cartId = usersShoppingCart.GetCartId();
+                    usersShoppingCart.RemoveItem(cartId, Convert.ToInt16(rawId));
+                }
+            }
+            else
+            {
+                Debug.Fail("ERROR : We should never get to /ShoppingCart/AddItemQuantity without a ProductId.");
+                throw new Exception("ERROR : It is illegal to load /ShoppingCart/AddItemQuantity without setting a ProductId.");
+            }
+            return RedirectToAction("Index");
+        }
         // GET: CartItems/Details/5
         public ActionResult Details(int? id)
         {

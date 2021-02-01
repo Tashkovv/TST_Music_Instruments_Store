@@ -2,7 +2,7 @@
 
 @{
     ViewBag.Title = "Index";
-    var i = 1;
+    var i = 0;
 }
 
 <h2>Shopping cart</h2>
@@ -37,13 +37,13 @@
     {
         <tr>
             <td>
-                @i
+                @(i += 1)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Product.NameOfProduct)
             </td>
             <td>
-                <img src="@item.Product.ImagePath" width="210" height="240" />
+                <img src="@item.Product.ImagePath" width="150" height="100" />
             </td>
             <td>
                 $@Html.DisplayFor(modelItem => item.Product.Price)
@@ -58,7 +58,6 @@
                 <a href="/CartItems/RemoveItemFromCart?ProductId=@item.ProductId" class="btn btn-md btn-default">Remove product</a>
             </td>
         </tr>
-        @(i += 1)
     }
 
 </table>

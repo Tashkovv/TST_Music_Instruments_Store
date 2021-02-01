@@ -176,6 +176,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Logic\ShoppingCartActions.cs" />
     <Compile Include="Migrations\202012021536337_initial.cs" />
     <Compile Include="Migrations\202012021536337_initial.designer.cs">
       <DependentUpon>202012021536337_initial.cs</DependentUpon>
@@ -183,6 +184,10 @@
     <Compile Include="Migrations\202012021602363_changed models with required and display.cs" />
     <Compile Include="Migrations\202012021602363_changed models with required and display.designer.cs">
       <DependentUpon>202012021602363_changed models with required and display.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102011944369_implementing shopping cart.cs" />
+    <Compile Include="Migrations\202102011944369_implementing shopping cart.designer.cs">
+      <DependentUpon>202102011944369_implementing shopping cart.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -331,6 +336,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202012021602363_changed models with required and display.resx">
       <DependentUpon>202012021602363_changed models with required and display.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102011944369_implementing shopping cart.resx">
+      <DependentUpon>202102011944369_implementing shopping cart.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
