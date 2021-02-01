@@ -103,21 +103,24 @@
                     {
                         <div class="col-4 mb-3">
                             <div class="card border-dark">
-                                    <div class="card-header text-center bg-dark text-white">
-                                        <a href="Details/@item.ProductId" class="text-white">
-                                            @item.NameOfProduct
-                                        </a>
-                                    </div>
-                                    <div class="card-body text-center">
-                                        <a href="Details/@item.ProductId">
-                                            <img src="@item.ImagePath" class="img img-thumbnail border-dark" style="width: 200px; height: 200px;" />
-                                        </a>
-                                        <hr class="bg-dark" />
-                                        <p class="text-center mb-0">Price: @item.Price</p>
-                                    </div>
-                                <button class="btn-outline-secondary border-right-0 border-bottom-0 border-left-0 btn">
-                                    Add to Cart <i class="fas fa-shopping-cart"></i>
-                                </button>
+                                <div class="card-header text-center bg-dark text-white">
+                                    <a href="Details/@item.ProductId" class="text-white">
+                                        @item.NameOfProduct
+                                    </a>
+                                </div>
+                                <div class="card-body text-center">
+                                    <a href="Details/@item.ProductId">
+                                        <img src="@item.ImagePath" class="img img-thumbnail border-dark" style="width: 200px; height: 200px;" />
+                                    </a>
+                                    <hr class="bg-dark" />
+                                    <p class="text-center mb-0">Price: @item.Price</p>
+                                </div>
+                                <div class="card-body text-center">
+                                    <a href="/CartItems/AddToCart?ProductId=@item.ProductId"
+                                       class="btn-outline-secondary border-right-0 border-bottom-0 border-left-0 btn">
+                                        Add to Cart <i class="fas fa-shopping-cart"></i>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     }

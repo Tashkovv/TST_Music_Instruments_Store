@@ -21,6 +21,7 @@ namespace TST_Music_Instruments_Store.Controllers
             return View(shoppingCartItems.ToList());
         }
 
+
         // GET: CartItems/Details/5
         public ActionResult Details(int? id)
         {
