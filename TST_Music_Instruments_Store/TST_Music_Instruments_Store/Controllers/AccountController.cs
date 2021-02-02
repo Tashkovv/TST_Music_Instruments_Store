@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Security.Claims;
@@ -133,6 +134,46 @@ namespace TST_Music_Instruments_Store.Controllers
                     return View(model);
             }
         }
+
+        //AddUserToRole
+        [Authorize(Roles = "Administrator")]
+        public ActionResult AddUserToRole()
+        {
+            AddRoleToUsers model = new AddRoleToUsers();
+            model.Roles.Add("Administrator");
+            model.Roles.Add("User");
+            ViewBag.UserName = this.User.Identity.Name;
+            var AllUsers = UserManager.Users.ToList();
+            var WithoutCurrentUser = new List<ApplicationUser>();
+            foreach (var item in AllUsers)
+            {
+                if (item.UserName != this.User.Identity.Name)
+                {
+                    WithoutCurrentUser.Add(item);
+                }
+            }
+
+            ViewBag.Users = WithoutCurrentUser;
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult AddUserToRole(AddRoleToUsers model)
+        {
+            try
+            {
+                var user = UserManager.FindByEmail(model.SelectedUserEmail);
+                UserManager.RemoveFromRole(user.Id, "Administrator");
+                UserManager.RemoveFromRole(user.Id, "Buyer");
+                UserManager.AddToRole(user.Id, model.SelectedRole);
+                return RedirectToAction("Index", "Home");
+            }
+            catch (Exception e)
+            {
+                return HttpNotFound();
+            }
+        }
+
 
         //
         // GET: /Account/Register

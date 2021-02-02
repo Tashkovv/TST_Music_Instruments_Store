@@ -15,12 +15,14 @@ namespace TST_Music_Instruments_Store.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Products
+        [AllowAnonymous]
         public ActionResult Index()
         {
             return View(db.Products.ToList());
         }
 
         // GET: Products/Details/5
+        [AllowAnonymous]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -36,6 +38,7 @@ namespace TST_Music_Instruments_Store.Controllers
         }
 
         // GET: Products/Create
+        [Authorize(Roles = "Administrator")]
         public ActionResult Create()
         {
             return View();
@@ -46,6 +49,7 @@ namespace TST_Music_Instruments_Store.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator")]
         public ActionResult Create([Bind(Include = "ProductId,NameOfProduct,ProductCategory,ProductSubCategory,StringCount,StringSize,Price,ImagePath,Manufacturer,Color,Rating")] Product product)
         {
             if (ModelState.IsValid)
@@ -59,6 +63,7 @@ namespace TST_Music_Instruments_Store.Controllers
         }
 
         // GET: Products/Edit/5
+        [Authorize(Roles = "Administrator")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -78,6 +83,7 @@ namespace TST_Music_Instruments_Store.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator")]
         public ActionResult Edit([Bind(Include = "ProductId,NameOfProduct,ProductCategory,ProductSubCategory,StringCount,StringSize,Price,ImagePath,Manufacturer,Color,Rating")] Product product)
         {
             if (ModelState.IsValid)
@@ -90,6 +96,7 @@ namespace TST_Music_Instruments_Store.Controllers
         }
 
         // GET: Products/Delete/5
+        [Authorize(Roles = "Administrator")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -107,6 +114,7 @@ namespace TST_Music_Instruments_Store.Controllers
         // POST: Products/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator")]
         public ActionResult DeleteConfirmed(int id)
         {
             Product product = db.Products.Find(id);

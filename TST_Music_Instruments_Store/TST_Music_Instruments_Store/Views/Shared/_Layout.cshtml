@@ -23,6 +23,12 @@
                     <li class="nav-item @Html.IsActive("Products", "Index")">
                         @Html.ActionLink("Products", "Index", "Products", new { area = "" }, new { @class = "nav-link" })
                     </li>
+                    @if (User.IsInRole("Administrator"))
+                    {
+                        <li class="nav-item @Html.IsActive("Products", "Create")">
+                            @Html.ActionLink("Add new Product", "Create", "Products", new { area = "" }, new { @class = "nav-link" })
+                        </li>
+                    }
                 </ul>
                 <form class="form-inline mr-auto justify-content-center">
                     <input class="form-control" type="search" placeholder="Search products..." aria-label="Search">
