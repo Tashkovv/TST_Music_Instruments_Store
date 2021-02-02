@@ -14,7 +14,7 @@
                 <a class="nav-link" href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
             </li>
             <li class="@Html.IsActive("CartItems", "Index")">
-                @Html.ActionLink(" ", "Index", "CartItems", new { @class = "nav-link fas fa-shopping-cart", style = "padding-top: 13px;" })
+                @Html.ActionLink(" ", "Index", "CartItems", new { @class = "nav-link fas fa-shopping-cart", style = "padding-top: 13px;"})
             </li>
             <li class="nav-item @Html.IsActive("Home", "About")">
                 @Html.ActionLink("About us", "About", "Home", new { area = "" }, new { @class = "nav-link" })
@@ -32,7 +32,7 @@ else
             @Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "nav-link" })
         </li>
         <li class="@Html.IsActive("CartItems", "Index")">
-            @Html.ActionLink(" ", "Index", "CartItems", new { @class = "nav-link fas fa-shopping-cart", style = "padding-top: 13px;" })
+            @Html.ActionLink(" ", "Index", "CartItems", new { @class = "nav-link fas fa-shopping-cart", style = "padding-top: 13px;"})
         </li>
         <li class="nav-item @Html.IsActive("Home", "About")">
             @Html.ActionLink("About us", "About", "Home", new { area = "" }, new { @class = "nav-link" })

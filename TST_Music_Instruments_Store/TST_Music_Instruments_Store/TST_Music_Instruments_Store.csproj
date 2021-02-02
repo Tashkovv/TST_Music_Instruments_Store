@@ -191,6 +191,10 @@
     <Compile Include="Migrations\202102011944369_implementing shopping cart.designer.cs">
       <DependentUpon>202102011944369_implementing shopping cart.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202102021821077_migrations for the user.cs" />
+    <Compile Include="Migrations\202102021821077_migrations for the user.designer.cs">
+      <DependentUpon>202102021821077_migrations for the user.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AddRoleToUsers.cs" />
@@ -245,6 +249,8 @@
     <Content Include="lib\font-awesome\webfonts\fa-brands-400.svg" />
     <Content Include="lib\font-awesome\webfonts\fa-regular-400.svg" />
     <Content Include="lib\font-awesome\webfonts\fa-solid-900.svg" />
+    <Content Include="Scripts\bootbox.js" />
+    <Content Include="Scripts\bootbox.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="libman.json" />
@@ -315,6 +321,7 @@
     <Content Include="Views\CartItems\Details.cshtml" />
     <Content Include="Views\CartItems\Edit.cshtml" />
     <Content Include="Views\CartItems\Index.cshtml" />
+    <Content Include="Views\CartItems\Purchase.cshtml" />
     <Content Include="Views\Account\AddUserToRole.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -343,6 +350,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202102011944369_implementing shopping cart.resx">
       <DependentUpon>202102011944369_implementing shopping cart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102021821077_migrations for the user.resx">
+      <DependentUpon>202102021821077_migrations for the user.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

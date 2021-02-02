@@ -61,3 +61,46 @@
     }
 
 </table>
+
+<div class="row">
+    <div class="col-md-6">
+        <p><b>Total price: $@ViewBag.Total</b></p>
+    </div>
+</div>
+@if (i >= 1)
+{
+    <div class="row">
+        <div class="col-md-6">
+            <a href="/CartItems/Purchase" id="purchase" class="btn btn-md btn-default">Order</a>
+        </div>
+    </div>
+}
+<!--
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $("#purchase").click(function () {
+                bootbox.confirm({
+                    title: "Order?",
+                    message: "Are you sure you want to order?",
+                    buttons: {
+                        confirm: {
+                            label: 'Yes',
+                            className: 'btn-success'
+                        },
+                        cancel: {
+                            label: 'No',
+                            className: 'btn-danger'
+                        }
+                    },
+                    callback: function (result) {
+                        if (result) {
+                            window.location.href = "/CartItems/Purchase";
+                        } else {
+
+                        }
+                    }});
+            });
+        });
+    </script>
+}-->

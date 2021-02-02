@@ -98,6 +98,31 @@ namespace TST_Music_Instruments_Store.Logic
                 }
             }
         }
+        public decimal GetTotal()
+        {
+            ShoppingCartId = GetCartId();
+            // Multiply product price by quantity of that product to get        
+            // the current price for each of those products in the cart.  
+            // Sum all product price totals to get the cart total.   
+            decimal? total = decimal.Zero;
+            total = (decimal?)(from cartItems in _db.ShoppingCartItems
+                               where cartItems.CartId == ShoppingCartId
+                               select (int?)cartItems.Quantity *
+                               cartItems.Product.Price).Sum();
+            return total ?? decimal.Zero;
+        }
+        public void EmptyCart()
+        {
+            ShoppingCartId = GetCartId();
+            var cartItems = _db.ShoppingCartItems.Where(
+                c => c.CartId == ShoppingCartId);
+            foreach (var cartItem in cartItems)
+            {
+                _db.ShoppingCartItems.Remove(cartItem);
+            }
+            // Save changes.             
+            _db.SaveChanges();
+        }
         public void Dispose()
         {
             if (_db != null)
