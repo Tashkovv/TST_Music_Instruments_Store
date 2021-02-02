@@ -7,6 +7,8 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 using TST_Music_Instruments_Store.Logic;
 using TST_Music_Instruments_Store.Models;
 
@@ -20,7 +22,7 @@ namespace TST_Music_Instruments_Store.Controllers
         public ActionResult Index()
         {
             ShoppingCartActions actions = new ShoppingCartActions();
-            /*using (ShoppingCartActions usersShoppingCart = new ShoppingCartActions())
+            using (ShoppingCartActions usersShoppingCart = new ShoppingCartActions())
             {
                 decimal cartTotal = 0;
                 cartTotal = usersShoppingCart.GetTotal();
@@ -33,7 +35,7 @@ namespace TST_Music_Instruments_Store.Controllers
                 {
                     ViewBag.Total = "0";
                 }
-            }*/
+            }
             return View(actions.GetCartItems());
         }
 
@@ -78,112 +80,30 @@ namespace TST_Music_Instruments_Store.Controllers
             }
             return RedirectToAction("Index");
         }
-        // GET: CartItems/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Purchase()
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            CartItem cartItem = db.ShoppingCartItems.Find(id);
-            if (cartItem == null)
-            {
-                return HttpNotFound();
-            }
-            return View(cartItem);
-        }
 
-        // GET: CartItems/Create
-        public ActionResult Create()
-        {
-            ViewBag.ProductId = new SelectList(db.Products, "ProductId", "NameOfProduct");
-            return View();
-        }
-
-        // POST: CartItems/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ItemId,CartId,Quantity,DateCreated,ProductId")] CartItem cartItem)
-        {
-            if (ModelState.IsValid)
+            using (ShoppingCartActions usersShoppingCart = new ShoppingCartActions())
             {
-                db.ShoppingCartItems.Add(cartItem);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (usersShoppingCart.GetCartItems().Count != 0 && this.User.Identity.IsAuthenticated)
+                {
+                    ApplicationUser user = System.Web.HttpContext.Current.GetOwinContext()
+                        .GetUserManager<ApplicationUserManager>()
+                        .FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
+                    ViewBag.FirstName = user.FirstName;
+                    ViewBag.LastName = user.LastName;
+                    ViewBag.Address = user.Address;
+                    usersShoppingCart.EmptyCart();
+                    return View();
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+
             }
 
-            ViewBag.ProductId = new SelectList(db.Products, "ProductId", "NameOfProduct", cartItem.ProductId);
-            return View(cartItem);
         }
-
-        // GET: CartItems/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            CartItem cartItem = db.ShoppingCartItems.Find(id);
-            if (cartItem == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.ProductId = new SelectList(db.Products, "ProductId", "NameOfProduct", cartItem.ProductId);
-            return View(cartItem);
-        }
-
-        // POST: CartItems/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ItemId,CartId,Quantity,DateCreated,ProductId")] CartItem cartItem)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(cartItem).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            ViewBag.ProductId = new SelectList(db.Products, "ProductId", "NameOfProduct", cartItem.ProductId);
-            return View(cartItem);
-        }
-
-        // GET: CartItems/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            CartItem cartItem = db.ShoppingCartItems.Find(id);
-            if (cartItem == null)
-            {
-                return HttpNotFound();
-            }
-            return View(cartItem);
-        }
-
-        // POST: CartItems/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            CartItem cartItem = db.ShoppingCartItems.Find(id);
-            db.ShoppingCartItems.Remove(cartItem);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+        
     }
 }
