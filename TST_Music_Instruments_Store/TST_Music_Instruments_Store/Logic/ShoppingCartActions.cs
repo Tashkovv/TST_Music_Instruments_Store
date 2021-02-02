@@ -123,6 +123,64 @@ namespace TST_Music_Instruments_Store.Logic
             // Save changes.             
             _db.SaveChanges();
         }
+        public void UpdateItem(string updateCartID, int updateProductID, int quantity)
+        {
+            using (var _db = new TST_Music_Instruments_Store.Models.ApplicationDbContext())
+            {
+                try
+                {
+                    var myItem = (from c in _db.ShoppingCartItems where c.CartId == updateCartID && c.Product.ProductId == updateProductID select c).FirstOrDefault();
+                    if (myItem != null)
+                    {
+                        myItem.Quantity = quantity;
+                        _db.SaveChanges();
+                    }
+                }
+                catch (Exception exp)
+                {
+                    throw new Exception("ERROR: Unable to Update Cart Item - " + exp.Message.ToString(), exp);
+                }
+            }
+        }
+        public void UpdateShoppingCartDatabase(String cartId, ShoppingCartUpdates[] CartItemUpdates)
+        {
+            using (var db = new TST_Music_Instruments_Store.Models.ApplicationDbContext())
+            {
+                try
+                {
+                    int CartItemCount = CartItemUpdates.Count();
+                    List<CartItem> myCart = GetCartItems();
+                    foreach (var cartItem in myCart)
+                    {
+                        // Iterate through all rows within shopping cart list
+                        for (int i = 0; i < CartItemCount; i++)
+                        {
+                            if (cartItem.Product.ProductId == CartItemUpdates[i].ProductId)
+                            {
+                                if (CartItemUpdates[i].PurchaseQuantity < 1 || CartItemUpdates[i].RemoveItem == true)
+                                {
+                                    RemoveItem(cartId, cartItem.ProductId);
+                                }
+                                else
+                                {
+                                    UpdateItem(cartId, cartItem.ProductId, CartItemUpdates[i].PurchaseQuantity);
+                                }
+                            }
+                        }
+                    }
+                }
+                catch (Exception exp)
+                {
+                    throw new Exception("ERROR: Unable to Update Cart Database - " + exp.Message.ToString(), exp);
+                }
+            }
+        }
+        public struct ShoppingCartUpdates
+        {
+            public int ProductId;
+            public int PurchaseQuantity;
+            public bool RemoveItem;
+        }
         public void Dispose()
         {
             if (_db != null)

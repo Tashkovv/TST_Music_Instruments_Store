@@ -80,6 +80,76 @@ namespace TST_Music_Instruments_Store.Controllers
             }
             return RedirectToAction("Index");
         }
+        //RemoveItem
+        [AllowAnonymous]
+        public ActionResult RemoveItemQuantity()
+        {
+            string rawId = Request.QueryString["ProductId"];
+            int productId;
+            if (!String.IsNullOrEmpty(rawId) && int.TryParse(rawId, out productId))
+            {
+                using (ShoppingCartActions usersShoppingCart = new ShoppingCartActions())
+                {
+                    String cartId = usersShoppingCart.GetCartId();
+                    var allItems = usersShoppingCart.GetCartItems();
+                    int currentQuantity = 0;
+                    foreach (var item in allItems)
+                    {
+                        if (Convert.ToInt16(rawId) == item.ProductId)
+                        {
+                            currentQuantity = item.Quantity;
+                        }
+                    }
+                    currentQuantity -= 1;
+                    if (currentQuantity == 0)
+                    {
+                        usersShoppingCart.RemoveItem(cartId, Convert.ToInt16(rawId));
+                    }
+                    else
+                    {
+                        usersShoppingCart.UpdateItem(cartId, Convert.ToInt16(rawId), currentQuantity);
+                    }
+
+                }
+            }
+            else
+            {
+                Debug.Fail("ERROR : We should never get to /ShoppingCart/RemoveItem without a ProductId.");
+                throw new Exception("ERROR : It is illegal to load /ShoppingCart/RemoveItem without setting a ProductId.");
+            }
+            return RedirectToAction("Index");
+        }
+        //AddItemQuantity
+        [AllowAnonymous]
+        public ActionResult AddItemQuantity()
+        {
+            string rawId = Request.QueryString["ProductId"];
+            int productId;
+            if (!String.IsNullOrEmpty(rawId) && int.TryParse(rawId, out productId))
+            {
+                using (ShoppingCartActions usersShoppingCart = new ShoppingCartActions())
+                {
+                    String cartId = usersShoppingCart.GetCartId();
+                    var allItems = usersShoppingCart.GetCartItems();
+                    int currentQuantity = 0;
+                    foreach (var item in allItems)
+                    {
+                        if (Convert.ToInt16(rawId) == item.ProductId)
+                        {
+                            currentQuantity = item.Quantity;
+                        }
+                    }
+                    currentQuantity += 1;
+                    usersShoppingCart.UpdateItem(cartId, Convert.ToInt16(rawId), currentQuantity);
+                }
+            }
+            else
+            {
+                Debug.Fail("ERROR : We should never get to /ShoppingCart/AddItemQuantity without a ProductId.");
+                throw new Exception("ERROR : It is illegal to load /ShoppingCart/AddItemQuantity without setting a ProductId.");
+            }
+            return RedirectToAction("Index");
+        }
         public ActionResult Purchase()
         {
 
@@ -104,6 +174,6 @@ namespace TST_Music_Instruments_Store.Controllers
             }
 
         }
-        
+
     }
 }

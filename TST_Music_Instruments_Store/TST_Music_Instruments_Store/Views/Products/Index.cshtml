@@ -4,10 +4,8 @@
     ViewBag.Title = "Index";
 }
 
-<div class="container" style="margin-bottom: 86.4px; margin-top: 54.4px">
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
+<div class="container" style="margin-bottom: 86.4px; margin-top: 5%">
+
     <div class="row">
         <div class="col-2">
             <div class="container pr-0 pl-0">
@@ -113,7 +111,7 @@
                                         <img src="@item.ImagePath" class="img img-thumbnail border-dark" style="width: 200px; height: 200px;" />
                                     </a>
                                     <hr class="bg-dark" />
-                                    <p class="text-center mb-0">Price: @item.Price</p>
+                                    <p class="text-center mb-0">Price: $@item.Price</p>
                                 </div>
                                 <div class="card-body text-center">
                                     <a href="/CartItems/AddToCart?ProductId=@item.ProductId"
