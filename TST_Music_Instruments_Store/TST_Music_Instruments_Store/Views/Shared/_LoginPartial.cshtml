@@ -7,8 +7,8 @@
         @Html.AntiForgeryToken()
 
         <ul class="nav navbar-nav navbar-right">
-            <li>
-                @Html.ActionLink("Hello " +User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @class = "nav-link" })
+            <li class="nav-link">
+                Hello @User.Identity.Name!
             </li>
             <li>
                 <a class="nav-link" href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
@@ -22,12 +22,6 @@
             <li class="nav-item @Html.IsActive("Home", "Contact")">
                 @Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })
             </li>
-            @if (User.IsInRole("Administrator"))
-            {
-                <li class="nav-item" style="color:green;margin-top:8px">
-                    @Html.Label("Admin")
-                </li>
-            }
         </ul>
     }
 }
@@ -37,9 +31,12 @@ else
         <li class="@Html.IsActive("Account", "Login")">
             @Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "nav-link" })
         </li>
-        <li class="@Html.IsActive("CartItems", "Index")">
-            @Html.ActionLink(" ", "Index", "CartItems", new { area = "" }, new { @class = "nav-link fas fa-shopping-cart", style = "padding-top: 13px;" })
-        </li>
+        @if (User.Identity.IsAuthenticated)
+        {
+            <li class="@Html.IsActive("CartItems", "Index")">
+                @Html.ActionLink(" ", "Index", "CartItems", new { area = "" }, new { @class = "nav-link fas fa-shopping-cart", style = "padding-top: 13px;" })
+            </li>
+        }
         <li class="nav-item @Html.IsActive("Home", "About")">
             @Html.ActionLink("About us", "About", "Home", new { area = "" }, new { @class = "nav-link" })
         </li>

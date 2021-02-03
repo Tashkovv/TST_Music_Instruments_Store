@@ -23,10 +23,9 @@
                     <li class="nav-item @Html.IsActive("Products", "Index")">
                         @Html.ActionLink("Products", "Index", "Products", new { area = "" }, new { @class = "nav-link" })
                     </li>
-                    @if (User.IsInRole("Administrator"))
-                    {
-                        <li class="nav-item @Html.IsActive("Products", "Create")">
-                            @Html.ActionLink("Add new Product", "Create", "Products", new { area = "" }, new { @class = "nav-link" })
+                    @if (User.IsInRole("Administrator")) { 
+                        <li class="nav-item @Html.IsActive("Account", "AddUserToRole")">
+                            @Html.ActionLink("Add user to role", "AddUserToRole", "Account", new { area = "" }, new { @class = "nav-link" })
                         </li>
                     }
                 </ul>

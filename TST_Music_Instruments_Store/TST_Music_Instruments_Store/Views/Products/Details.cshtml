@@ -20,14 +20,17 @@
             <h4><b>Color:</b> @Model.Color</h4>
             <h4><b>String count:</b> @Model.StringCount</h4>
             <h4><b>String size:</b> @Model.StringSize</h4>
-            <hr />
-            <a href="" class="btn btn-block btn-dark">Add to Cart</a>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <hr />
+                <a href="/CartItems/AddToCart?ProductId=@Model.ProductId" class="btn btn-block btn-dark">Add to Cart</a>
+            }
             <br />
             @if (User.IsInRole("Administrator"))
             {
                 @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-dark" })
-                @Html.ActionLink("Edit", "Edit", new { id = Model.ProductId }, new { @class = "btn btn-dark" })
-                @Html.ActionLink("Delete", "Delete", new { id = Model.ProductId }, new { @class = "btn btn-dark" })
+                @Html.ActionLink("Edit", "Edit", new { id = Model.ProductId }, new { @class = "btn btn-dark ml-3" })
+                @Html.ActionLink("Delete", "Delete", new { id = Model.ProductId }, new { @class = "btn btn-dark ml-3" })
             }
         </div>
     </div>

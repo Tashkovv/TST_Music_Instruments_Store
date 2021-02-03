@@ -4,12 +4,20 @@
     ViewBag.Title = "Index";
 }
 
-<div class="container" style="margin-bottom: 86.4px; margin-top: 5%">
+<div class="container" style="margin-bottom: 9%; margin-top: 7%">
 
     <div class="row">
         <div class="col-2">
             <div class="container pr-0 pl-0">
                 <div class="row">
+                    @if (User.IsInRole("Administrator"))
+                    {
+                        <div style="margin-left: 15%;">
+                        @Html.ActionLink("Add new Product", "Create", "Products", new { area = "" }, new { @class = "btn btn-dark text-center" })
+                        </div>
+                        <br />
+                        <br />
+                    }
                     <div class="col text-center">
                         <h4>Filter</h4>
                     </div>
@@ -113,12 +121,15 @@
                                     <hr class="bg-dark" />
                                     <p class="text-center mb-0">Price: $@item.Price</p>
                                 </div>
-                                <div class="card-body text-center">
-                                    <a href="/CartItems/AddToCart?ProductId=@item.ProductId"
-                                       class="btn-outline-secondary border-right-0 border-bottom-0 border-left-0 btn">
-                                        Add to Cart <i class="fas fa-shopping-cart"></i>
-                                    </a>
-                                </div>
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <div class="card-body text-center">
+                                        <a href="/CartItems/AddToCart?ProductId=@item.ProductId"
+                                           class="btn-outline-secondary border-right-0 border-bottom-0 border-left-0 btn">
+                                            Add to Cart <i class="fas fa-shopping-cart"></i>
+                                        </a>
+                                    </div>
+                                }
                             </div>
                         </div>
                     }
