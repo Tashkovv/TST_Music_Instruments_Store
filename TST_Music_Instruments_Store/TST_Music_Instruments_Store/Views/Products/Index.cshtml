@@ -13,7 +13,7 @@
                     @if (User.IsInRole("Administrator"))
                     {
                         <div style="margin-left: 15%;">
-                        @Html.ActionLink("Add new Product", "Create", "Products", new { area = "" }, new { @class = "btn btn-dark text-center" })
+                            @Html.ActionLink("Add new Product", "Create", "Products", new { area = "" }, new { @class = "btn btn-dark text-center" })
                         </div>
                         <br />
                         <br />
@@ -23,83 +23,85 @@
                     </div>
                 </div>
                 <hr style="margin: 5px 0 10px 0;" />
-                <div class="row">
-                    <div class="col">
-                        <h4>Instrument</h4>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="Instrument_1" id="InstrumentName1">
-                            <label class="form-check-label" for="InstrumentName1">
-                                Guitar
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="Instrument_2" id="InstrumentName2">
-                            <label class="form-check-label" for="InstrumentName2">
-                                Violin
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="Instrument_3" id="InstrumentName3">
-                            <label class="form-check-label" for="InstrumentName3">
-                                Viola
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="Instrument_4" id="InstrumentName4">
-                            <label class="form-check-label" for="InstrumentName4">
-                                Cello
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="Instrument_5" id="InstrumentName5">
-                            <label class="form-check-label" for="InstrumentName5">
-                                Bass
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                <hr />
-                <div class="row">
-                    <div class="col">
-                        <h5>Manufacturer</h5>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="Firma 1" id="ManufacturerName1">
-                            <label class="form-check-label" for="ManufacturerName1">
-                                Gibson
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="Firma 1" id="ManufacturerName2">
-                            <label class="form-check-label" for="ManufacturerName2">
-                                Fender
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="Firma 1" id="ManufacturerName3">
-                            <label class="form-check-label" for="ManufacturerName3">
-                                Shure
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="Firma 1" id="ManufacturerName4">
-                            <label class="form-check-label" for="ManufacturerName4">
-                                Yamaha
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="Firma 1" id="ManufacturerName5">
-                            <label class="form-check-label" for="ManufacturerName5">
-                                Sennheiser
-                            </label>
+                <form method="post">
+                    <div class="row">
+                        <div class="col">
+                            <h4>Instrument</h4>
+                            <div class="form-check">
+                                <input class="form-check-input" name="Guitar" type="checkbox" value="True" id="InstrumentName1">
+                                <label class="form-check-label" for="InstrumentName1">
+                                    Guitar
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" name="Violin" type="checkbox" value="True" id="InstrumentName2">
+                                <label class="form-check-label" for="InstrumentName2">
+                                    Violin
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" name="Viola" type="checkbox" value="True" id="InstrumentName3">
+                                <label class="form-check-label" for="InstrumentName3">
+                                    Viola
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" name="Cello" type="checkbox" value="True" id="InstrumentName4">
+                                <label class="form-check-label" for="InstrumentName4">
+                                    Cello
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" name="Bass" type="checkbox" value="True" id="InstrumentName5">
+                                <label class="form-check-label" for="InstrumentName5">
+                                    Bass
+                                </label>
+                            </div> 
                         </div>
                     </div>
-                </div>
-                <br />
-                <div class="row">
-                    <div class="col text-center">
-                        <button type="submit" class="btn bg-dark text-white">Filter</button>
+                    <hr />
+                    <div class="row">
+                        <div class="col">
+                            <h5>Manufacturer</h5>
+                            <div class="form-check">
+                                <input class="form-check-input" name="Gibson" type="checkbox" value="Firma 1" id="ManufacturerName1">
+                                <label class="form-check-label" for="ManufacturerName1">
+                                    Gibson
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" name="Fender" type="checkbox" value="Firma 1" id="ManufacturerName2">
+                                <label class="form-check-label" for="ManufacturerName2">
+                                    Fender
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" name="Shure" type="checkbox" value="Firma 1" id="ManufacturerName3">
+                                <label class="form-check-label" for="ManufacturerName3">
+                                    Shure
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" name="Yamaha" type="checkbox" value="Firma 1" id="ManufacturerName4">
+                                <label class="form-check-label" for="ManufacturerName4">
+                                    Yamaha
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" name="Sennheiser" type="checkbox" value="Firma 1" id="ManufacturerName5">
+                                <label class="form-check-label" for="ManufacturerName5">
+                                    Sennheiser
+                                </label>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                    <br />
+                    <div class="row">
+                        <div class="col text-center">
+                            <button type="submit" class="btn bg-dark text-white">Filter</button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
         <div class="col-10">

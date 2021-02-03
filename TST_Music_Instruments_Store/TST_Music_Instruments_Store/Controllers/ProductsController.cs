@@ -21,6 +21,68 @@ namespace TST_Music_Instruments_Store.Controllers
             return View(db.Products.ToList());
         }
 
+        [AllowAnonymous]
+        [HttpPost]
+        public ActionResult Index(FormCollection formCollection)
+        {
+            List<Product> dbProducts = db.Products.ToList();
+            List<Product> filteredProductsByInstrument = new List<Product>();
+            List<Product> filteredProducts= new List<Product>();
+            List<string> instruments = new List<string>();
+            List<string> manufacturer = new List<string>();
+            foreach (var form in formCollection)
+            {
+                if (form.ToString().Equals("Guitar") ||
+                    form.ToString().Equals("Violin") ||
+                    form.ToString().Equals("Viola") ||
+                    form.ToString().Equals("Chello") ||
+                    form.ToString().Equals("Bass"))
+                {
+                    instruments.Add(form.ToString());
+                }
+                if (form.ToString().Equals("Gibson") ||
+                    form.ToString().Equals("Fender") ||
+                    form.ToString().Equals("Yamaha") ||
+                    form.ToString().Equals("Shure") ||
+                    form.ToString().Equals("Sennheiser"))
+                {
+                    manufacturer.Add(form.ToString());
+                }
+            }
+            if (instruments.Any())
+            {
+                foreach (var dbItem in dbProducts)
+                {
+                    if (instruments.Contains(dbItem.ProductCategory))
+                    {
+                        filteredProductsByInstrument.Add(dbItem);
+                    }
+                }
+            }
+            if (manufacturer.Any() && instruments.Any())
+            {
+                foreach (var dbItem in filteredProductsByInstrument)
+                {
+                    if (manufacturer.Contains(dbItem.Manufacturer))
+                    {
+                        filteredProducts.Add(dbItem);
+                    }
+                }
+            } 
+            else if (!instruments.Any())
+            {
+                foreach (var dbItem in dbProducts)
+                {
+                    if (manufacturer.Contains(dbItem.Manufacturer))
+                    {
+                        filteredProducts.Add(dbItem);
+                    }
+                }
+            }
+            
+            return View(filteredProducts);
+        }
+
         // GET: Products/Details/5
         [AllowAnonymous]
         public ActionResult Details(int? id)
