@@ -5,6 +5,24 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
+public enum Manufacturer
+{
+    Gibson,
+    Fender,
+    Shure,
+    Yamaha,
+    Sennheinser
+}
+
+public enum Category
+{
+    Guitar,
+    Violin,
+    Viola,
+    Cello,
+    Bass
+}
+
 namespace TST_Music_Instruments_Store.Models
 {
     public class Product

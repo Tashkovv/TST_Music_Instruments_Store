@@ -1,6 +1,16 @@
 ﻿@model TST_Music_Instruments_Store.Models.Product
 
-@using (Html.BeginForm()) 
+public enum Manufacturer
+{
+    Gibson,
+    Fender,
+    Shure,
+    Yamaha,
+    Sennheinser
+}
+
+
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     <div class="form-horizontal" style="margin-top: 7%; margin-bottom: 9%;">
@@ -19,8 +29,10 @@
         <div class="form-group d-flex justify-content-center">
             @Html.LabelFor(model => model.ProductCategory, htmlAttributes: new { @class = "control-label col-md-2 mt-1" })
             <div class="col-md-4">
-                @Html.EditorFor(model => model.ProductCategory, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ProductCategory, "", new { @class = "text-danger" })
+                @Html.DropDownListFor(m => m.Manufacturer,
+                    new SelectList(Enum.GetValues(typeof(Category)))
+                    , new { htmlAttributes = new { @class = "form-control" } })
+                
             </div>
         </div>
 
@@ -66,9 +78,12 @@
 
         <div class="form-group d-flex justify-content-center">
             @Html.LabelFor(model => model.Manufacturer, htmlAttributes: new { @class = "control-label col-md-2 mt-1" })
+           
             <div class="col-md-4">
-                @Html.EditorFor(model => model.Manufacturer, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Manufacturer, "", new { @class = "text-danger" })
+                @Html.DropDownListFor(m => m.Manufacturer,
+                    new SelectList(Enum.GetValues(typeof(Manufacturer))), 
+                    new { htmlAttributes = new { @class = "form-control" } })
+
             </div>
         </div>
 
