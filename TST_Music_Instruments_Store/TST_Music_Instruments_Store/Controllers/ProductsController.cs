@@ -12,6 +12,10 @@ namespace TST_Music_Instruments_Store.Controllers
 {
     public class ProductsController : Controller
     {
+       
+
+
+
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Products
