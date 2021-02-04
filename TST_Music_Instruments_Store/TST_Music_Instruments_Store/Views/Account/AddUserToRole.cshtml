@@ -3,23 +3,26 @@
     ViewBag.Title = "AddUserToRole";
 }
 
-<div class="container" style="margin-top: 7%; margin-bottom: 9%">
-    <div class="row">
-        <div class="col text-center">
-            <h3>Add user to role</h3>
-            <hr />
-            <div class="form-group">
-                @Html.LabelFor(m => m.SelectedUserEmail)
+@using (Html.BeginForm("AddUserToRole", "Account"))
+{
+    <div class="container" style="margin-top: 7%; margin-bottom: 9%">
+        <div class="row">
+            <div class="col text-center">
+                <h3>Add user to role</h3>
+                <hr />
+                <div class="form-group">
+                    @Html.LabelFor(m => m.SelectedUserEmail)
+                    <br />
+                    @Html.DropDownListFor(m => m.SelectedUserEmail, new SelectList(ViewBag.Users, "Email", "Email"), new { @class = "form-control d-inline" })
+                </div>
                 <br />
-                @Html.DropDownListFor(m => m.SelectedUserEmail, new SelectList(ViewBag.Users, "Email", "Email"), new { @class = "form-control d-inline" })
+                <div class="form-group">
+                    @Html.LabelFor(m => m.SelectedRole)
+                    <br />
+                    @Html.DropDownListFor(m => m.SelectedRole, new SelectList(Model.Roles), new { @class = "form-control d-inline" })
+                </div>
+                <button class="btn btn-md btn-dark" type="submit">Add</button>
             </div>
-            <br />
-            <div class="form-group">
-                @Html.LabelFor(m => m.SelectedRole)
-                <br />
-                @Html.DropDownListFor(m => m.SelectedRole, new SelectList(Model.Roles), new { @class = "form-control d-inline" })
-            </div>
-            <button class="btn btn-md btn-dark" type="submit">Add</button>
         </div>
     </div>
-</div>
+}

@@ -166,7 +166,7 @@ namespace TST_Music_Instruments_Store.Controllers
             {
                 var user = UserManager.FindByEmail(model.SelectedUserEmail);
                 UserManager.RemoveFromRole(user.Id, "Administrator");
-                UserManager.RemoveFromRole(user.Id, "Buyer");
+                UserManager.RemoveFromRole(user.Id, "User");
                 UserManager.AddToRole(user.Id, model.SelectedRole);
                 return RedirectToAction("Index", "Home");
             }

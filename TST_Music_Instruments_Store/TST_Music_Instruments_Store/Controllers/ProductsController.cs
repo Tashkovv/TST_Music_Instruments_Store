@@ -63,7 +63,7 @@ namespace TST_Music_Instruments_Store.Controllers
                     }
                 }
             }
-            if (manufacturer.Any() && instruments.Any())
+            if (manufacturer.Any() && filteredProductsByInstrument.Any())
             {
                 foreach (var dbItem in filteredProductsByInstrument)
                 {
@@ -83,8 +83,11 @@ namespace TST_Music_Instruments_Store.Controllers
                     }
                 }
             }
-            
-            return View(filteredProducts);
+
+            if (filteredProducts.Any())
+                return View(filteredProducts);
+            else
+                return View(filteredProductsByInstrument);
         }
 
         // GET: Products/Details/5
